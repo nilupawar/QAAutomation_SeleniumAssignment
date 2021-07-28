@@ -33,7 +33,7 @@ public class AptHousing {
         Assert.assertTrue(aptHousingPage.isSortedByPriceDesc());
     }
 
-    @Then("^user should be on apt housing page$")
+    @Then("^user should be on apts/housing page$")
     public void isValidAptHousingPage() {
         Assert.assertTrue(aptHousingPage.isValidPage());
     }
