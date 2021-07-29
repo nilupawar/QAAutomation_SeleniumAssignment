@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
                 , "html:target/cucumber_html_output"
                 , "json:target/cucumber_json_report.json"
                 , "progress:target/cucumber_progress_report"
-//                , "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm" //Allure report plug-in
         }
 )
 public class TestRunner {

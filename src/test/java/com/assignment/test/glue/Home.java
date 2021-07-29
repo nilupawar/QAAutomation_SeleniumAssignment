@@ -1,6 +1,6 @@
 package com.assignment.test.glue;
 
-import com.assignment.lib.config.TestCase;
+import com.assignment.lib.config.TestScenario;
 import com.assignment.test.pages.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -10,8 +10,8 @@ import java.net.MalformedURLException;
 public class Home {
     private final HomePage homePage;
 
-    public Home(TestCase testCase) {
-        homePage = new HomePage(testCase);
+    public Home(TestScenario testScenario) {
+        homePage = new HomePage(testScenario);
     }
 
     @Given("^user is at home page$")

@@ -1,11 +1,11 @@
 package com.assignment.lib.util;
 
-import java.text.NumberFormat;
+import com.assignment.lib.config.TestConfig;
+
+import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Utility {
@@ -20,11 +20,22 @@ public class Utility {
         return sorted.equals(items);
     }
 
-    public static void main(String[] args) throws ParseException {
-        String cur = "[£$€]";
-        String cur1 = "$10000";
+    public static String getScreenshotFileName() {
+        return "Screenshot_" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".PNG";
+    }
 
-        System.out.println(cur1.replaceAll(cur,""));
-//        System.out.println(NumberFormat.getNumberInstance(Locale.ENGLISH).parse("10.000").doubleValue());
+    public static int parseInt(String intString) {
+        return Integer.parseInt(intString);
+    }
+
+    public static int parseIntTestConfig(String intString) {
+        return parseInt(TestConfig.getConfig(intString));
+    }
+
+    public static void main(String[] args) throws ParseException {
+        String string = "2021-07-28 19:46";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
+        Date date = format.parse(string);
+        System.out.println(date);
     }
 }

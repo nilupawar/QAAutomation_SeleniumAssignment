@@ -5,7 +5,10 @@ import com.assignment.lib.types.LocatorType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -164,8 +167,8 @@ public class PageElement {
         putValue(testData, true);
     }
 
-    public void enterValue(String value, boolean isPassword) {
-        putValue(value, isPassword);
+    public void enterValue(String value, boolean isSecret) {
+        putValue(value, isSecret);
     }
 
 
@@ -230,12 +233,12 @@ public class PageElement {
     /*
      *
      * */
-    private void putValue(String dataValue, boolean isPassword) {
-        LOGGER.debug("Trying to enter value '{}' in element '{}' of type '{}'", isPassword ? "*******" : dataValue, name, elementType);
+    private void putValue(String dataValue, boolean isSecret) {
+        LOGGER.debug("Trying to enter value '{}' in element '{}' of type '{}'", isSecret ? "*******" : dataValue, name, elementType);
         WebElement webElement = getWebElement();
         assert webElement != null;
         webElement.sendKeys(dataValue);
-        LOGGER.info("Entered value '{}' in element '{}' of type '{}'", isPassword ? "*******" : dataValue, name, elementType);
+        LOGGER.info("Entered value '{}' in element '{}' of type '{}'", isSecret ? "*******" : dataValue, name, elementType);
     }
 
     public void setName(String name) {
@@ -260,5 +263,10 @@ public class PageElement {
 
     public void setElementType(ElementType elementType) {
         this.elementType = elementType;
+    }
+
+    public void waitUntilClickable(long maxTimeOutInSeconds) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, maxTimeOutInSeconds);
+        wait.until(ExpectedConditions.elementToBeClickable(this.getObject()));
     }
 }

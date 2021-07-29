@@ -16,7 +16,6 @@ public final class TestConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestConfig.class);
 
     private TestConfig() {
-        System.out.println("Constructor called");
         try (InputStream input = TestConfig.class.getClassLoader().getResourceAsStream("TestConfig.properties")) {
             properties.load(input);
             properties.forEach((key, value) -> System.setProperty(key.toString(), value.toString()));

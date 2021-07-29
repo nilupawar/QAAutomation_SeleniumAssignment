@@ -1,6 +1,6 @@
 package com.assignment.test.pages;
 
-import com.assignment.lib.config.TestCase;
+import com.assignment.lib.config.TestScenario;
 import com.assignment.lib.core.BasePage;
 import com.assignment.lib.elements.PageElement;
 import com.assignment.lib.types.ElementType;
@@ -8,8 +8,8 @@ import com.assignment.lib.types.LocatorType;
 
 
 public class HomePage extends BasePage {
-    public HomePage(TestCase testcase) {
-        super(testcase, "craigslist");
+    public HomePage(TestScenario testScenario) {
+        super(testScenario, "craigslist");
     }
 
     // --------------------------------------------------------------------------------------

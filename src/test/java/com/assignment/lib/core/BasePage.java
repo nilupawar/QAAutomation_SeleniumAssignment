@@ -1,10 +1,12 @@
 package com.assignment.lib.core;
 
-import com.assignment.lib.config.TestCase;
+
+import com.assignment.lib.config.TestScenario;
 import com.assignment.lib.config.TestConfig;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,11 +16,13 @@ import java.net.URL;
  * */
 public abstract class BasePage {
     protected WebDriver driver;
+    private TestScenario testScenario;
     private String pageTitle;
     private static final Logger LOGGER = LoggerFactory.getLogger(TestConfig.class);
 
-    protected BasePage(TestCase testCase, String pageTitle) {
-        this.driver = testCase.getDriver();
+    protected BasePage(TestScenario testScenario, String pageTitle) {
+        this.testScenario = testScenario;
+        this.driver = testScenario.getDriver();
         this.pageTitle = pageTitle;
     }
 
@@ -56,10 +60,15 @@ public abstract class BasePage {
     public boolean isValidPage() {
         String title = driver.getTitle();
         if (!title.contains(pageTitle)) {
-            LOGGER.error("Page title : actual {}, expected {}, Checks for contains", title, pageTitle);
+            System.out.println("Page title : actual " + title + ", expected {" + pageTitle + "}, Checks for contains");
+            LOGGER.error("Page title : actual '{}' contains/equals expected '{}', Checks for contains", title, pageTitle);
             return false;
         }
-        LOGGER.info("Page title : actual {}, expected {}, Checks for contains", title, pageTitle);
+        LOGGER.info("Page title : actual '{}' contains/equals expected '{}', Checks for contains", title, pageTitle);
         return true;
+    }
+
+    public void cucumberResultLog(String logMessage) {
+        testScenario.cucumberResultLog(logMessage);
     }
 }

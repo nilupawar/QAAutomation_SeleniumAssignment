@@ -1,6 +1,7 @@
 package com.assignment.lib.config;
 
 import com.assignment.lib.types.BrowserName;
+import com.assignment.lib.util.Utility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -47,8 +48,8 @@ final class DriverUtil {
     }
 
     private void setTimeOut() {
-        driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(TestConfig.getConfig("pageLoadTime")), TimeUnit.MILLISECONDS);
-        driver.manage().timeouts().implicitlyWait(Integer.parseInt(TestConfig.getConfig("objectLoadTime")), TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().pageLoadTimeout(Utility.parseIntTestConfig("pageLoadTime") * 1000L, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(Utility.parseIntTestConfig("objectLoadTime") * 1000L, TimeUnit.MILLISECONDS);
     }
 
 
